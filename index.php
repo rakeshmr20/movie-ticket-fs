@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+// chroot("/movie-ticket-fs/");
 if (!isset($_SESSION['userId'])) {
   session_start();
 }
@@ -25,6 +26,7 @@ if (isset($_GET['page'])) {
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<link rel="stylesheet" type="text/css" href="include/main.css">
   	<script type="text/javascript" src="include/main.js"></script>
+  	<base href="/movie-ticket-fs/index.php">
 </head>
 <body>
 <div class="container">

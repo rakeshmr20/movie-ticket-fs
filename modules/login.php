@@ -12,6 +12,7 @@ if (isset($_POST['form-type']) && $_POST['form-type'] == "login") {
       // proceed in
       $_SESSION['userId'] = $loginUsr[0];
       $_SESSION['userName'] = $loginUsr[1];
+      $_SESSION['userStatus'] = $loginUsr[3];
       if ($loginUsr[3] == 100) {
         // header('Location: ?page=adminHome');
         echo "<script>window.location.href='?page=adminHome';</script>";

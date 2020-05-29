@@ -27,10 +27,54 @@ class FileProcess
 		$this->fileData = fread($this->fileHandler, filesize($this->fileName));
 		return $this->fileData;
 	}
+	// Get all data as array
+	function getAllData()
+	{
+		if (!$this->fileData) {
+			$this->readFile();
+		}
+		if ($this->fileData) {
+			$finalData = array();
+			$fullDataArray = explode("|", $this->fileData, -1);
+			foreach ($fullDataArray as $key => $value) {
+				$singleDataArray = explode("~", $value, -1);
+				array_push($finalData, $singleDataArray);
+			}
+			return $finalData;
+		} else {
+			return false;
+		}
+	}
+	// Get single movie
+	function getSingleData($id)
+	{
+		if (!$this->fileData) {
+			$this->readFile();
+		}
+		if ($this->fileData) {
+			$fullDataArray = explode("|", $this->fileData, -1);
+			foreach ($fullDataArray as $key => $value) {
+				$singleDataArray = explode("~", $value, -1);
+				// print_r($singleDataArray);
+				if ($singleDataArray[0] === $id) {
+					return $singleDataArray;
+				}
+			}
+			return false;
+		} else {
+			return false;
+		}
+	}
+
 	// Append any data
 	function appendFile($data)
 	{
-		fwrite($fileHandler, $data);
+		try {
+			fwrite($this->fileHandler, $data);
+			return true;
+		} catch (Exception $e) {
+			return false;
+		}
 	}
 	// Create new file or overwrite existing file
 	function writeToFile($data)
@@ -72,13 +116,13 @@ class UserManagement
 		$this->usersData = fread($this->fHandler, filesize($this->fname));
 		return $this->usersData;
 	}
-	function getSingleUser($userName)
+	function getSingleUser($userName='', $userId='')
 	{
 		$this->getAllUsers();
 		$allUsersArray = explode("|", $this->usersData, -1);
 		foreach ($allUsersArray as $key => $value) {
 			$this->userData = explode("~", $value, -1);
-			if ($this->userData[1]===$userName) {
+			if ($this->userData[1]===$userName || $this->userData[0] === $userId) {
 				$this->flag = true;
 				break;
 			}
@@ -103,5 +147,22 @@ class UserManagement
 		}
 		
 	}
+	// Get user Count
+	function getUserCount($uStatus)
+	{
+		$count = 0;
+		if (!$this->usersData) {
+			$this->getAllUsers();
+		}
+		$allUsersArray = explode("|", $this->usersData, -1);
+		foreach ($allUsersArray as $key => $value) {
+			$this->userData = explode("~", $value, -1);
+			if ($this->userData[3]=== $uStatus) {
+				++$count;
+			}
+		}
+		return $count;
+	}
 }
+
 ?>
