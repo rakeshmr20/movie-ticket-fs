@@ -11,9 +11,14 @@ else if ($_SESSION['userStatus']!='200') {
 } 
 $ticketFH = new FileProcess('database/tickets.txt');
 ?>
+<header class="bg-primary text-center py-5 mb-4">
+  <div class="container">
+    <h1 class="font-weight-light text-white">User Home Page</h1>
+    <label>User Name:</label><?php echo($_SESSION['userName']); ?>
+  </div>
+</header>
 <div class="container">
 	<div class="module text-center bg-warning">
-		<label>User Name:</label><?php echo($_SESSION['userName']); echo '<br>'; //print_r($_SESSION); ?>
 		<label>Total Tickets:</label><?php echo($ticketFH->countUserTickets($_SESSION['userId'])); ?>
 	</div>
 	<div class="module">

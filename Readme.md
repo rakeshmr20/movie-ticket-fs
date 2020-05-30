@@ -1,9 +1,13 @@
 # Movie Ticket Booking
 ## FS Project
 
-### Users structure
-Datatype: 
+### Run Code
+* Use any php server
+
+### Users structure 
+```
 userId~userName~userPw~statusCode~hash
+```
 
 Based on statusCode the access control can be handled
 
