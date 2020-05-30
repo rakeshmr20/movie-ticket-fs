@@ -19,10 +19,10 @@
     </ul>
     	<?php
     		if (isset($_SESSION['userId'])) {
-          if ($_SESSION['userStatus']==100) {
-            echo '<button class="btn btn-success" onclick="window.location.href=\'?page=adminHome\'">'.$_SESSION['userName'].' Home</button>';
+          if ($_SESSION['userStatus']=='100') {
+            echo '<button class="btn btn-success" onclick="window.location.href=\'?page=adminHome\'">'.$_SESSION['userName'].' . Home</button>';
           } else {
-            echo '<button class="btn btn-success" onclick="window.location.href=\'?page=userHome\'">'.$_SESSION['userName'].' Home</button>';
+            echo '<button class="btn btn-success" onclick="window.location.href=\'?page=userHome\'">'.$_SESSION['userName'].' . Home</button>';
           }
     		} else {
     			echo '<button class="btn btn-success" onclick="window.location.href=\'?page=login\'">Login</button>';

@@ -65,7 +65,64 @@ class FileProcess
 			return false;
 		}
 	}
-
+	// get a user tickets
+	function getUserTickets($userId)
+	{
+		$retArray = array();
+		if (!$this->fileData) {
+			$this->readFile();
+		}
+		if ($this->fileData) {
+			$fullDataArray = explode("|", $this->fileData, -1);
+			foreach ($fullDataArray as $key => $value) {
+				$singleDataArray = explode("~", $value, -1);
+				// print_r($singleDataArray);
+				if ($singleDataArray[1] === $userId) {
+					array_push($retArray, $singleDataArray);
+				}
+			}
+			return $retArray;
+		} else {
+			return false;
+		}
+	}
+	// count a user tickets
+	function countUserTickets($userId)
+	{
+		$tcount = 0;
+		if (!$this->fileData) {
+			$this->readFile();
+		}
+		if ($this->fileData) {
+			$fullDataArray = explode("|", $this->fileData, -1);
+			foreach ($fullDataArray as $key => $value) {
+				$singleDataArray = explode("~", $value, -1);
+				if ($singleDataArray[1] === $userId) {
+					$tcount += intval($singleDataArray[4]);
+				}
+			}
+			return $tcount;
+		} else {
+			return 0;
+		}
+	}
+	// count total tickets
+	function countTotalTickets()
+	{
+		$tcount = 0;
+		if (!$this->fileData) {
+			$this->readFile();
+		}
+		if ($this->fileData) {
+			$fullDataArray = explode("|", $this->fileData, -1);
+			// foreach ($fullDataArray as $key => $value) {
+				
+			// }
+			return count($fullDataArray);
+		} else {
+			return 0;
+		}
+	}
 	// Append any data
 	function appendFile($data)
 	{

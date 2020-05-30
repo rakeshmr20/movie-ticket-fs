@@ -44,7 +44,7 @@ if (isset($_POST['form-type']) && $_POST['form-type'] == "login") {
     </label>
     <div class="input-container">
       <i class="fa fa-user icon"></i>
-      <input class="input-field" type="text" placeholder="Username" name="username" autocomplete required>
+      <input class="input-field" type="text" placeholder="Username" name="username" autocomplete="false" required>
     </div>
     
     <div class="input-container">
