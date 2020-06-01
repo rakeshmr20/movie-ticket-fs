@@ -93,4 +93,25 @@ if (isset($_POST['addTimings'])) {
     exit;
 }
 
+if (isset($_POST['delMovie'])) {
+	unlink('upload/'.$movieFH->deleteSingleData($_POST['delId']));
+	echo "<script>window.location.href='/movie-ticket-fs/index.php?page=adminHome';</script>";
+    exit;
+}
+if (isset($_POST['delUpcoming'])) {
+	unlink('upload/'.$upcomingFH->deleteSingleData($_POST['delId']));
+	echo "<script>window.location.href='/movie-ticket-fs/index.php?page=adminHome';</script>";
+    exit;
+}
+if (isset($_POST['delTime'])) {
+	$timeFH->deleteSingleData($_POST['delId']);
+	echo "<script>window.location.href='/movie-ticket-fs/index.php?page=adminHome';</script>";
+    exit;
+}
+if (isset($_POST['delTheatre'])) {
+	$theatreFH->deleteSingleData($_POST['delId']);
+	echo "<script>window.location.href='/movie-ticket-fs/index.php?page=adminHome';</script>";
+    exit;
+}
+
 ?>

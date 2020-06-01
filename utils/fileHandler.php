@@ -140,6 +140,33 @@ class FileProcess
 		fwrite($handler, $data);
 		fclose($handler);
 	}
+	// Delete a record
+	function deleteSingleData($dataId)
+	{
+		$procData = '';
+		$delFlag = false;
+		$movieImage = true;
+		if (!$this->fileData) {
+			$this->readFile();
+		}
+		if ($this->fileData) {
+			$fullDataArray = explode("|", $this->fileData, -1);
+			foreach ($fullDataArray as $key => $value) {
+				$singleDataArray = explode("~", $value, -1);
+				if ($singleDataArray[0] === $dataId) {
+					$movieImage = $singleDataArray[5];
+					continue;
+				} else {
+					$procData = $procData.$fullDataArray[$key].'|';
+				}
+			}
+			// print_r($procData);
+			$this->writeToFile($procData);
+			return $movieImage;
+		} else {
+			return false;
+		}
+	}
 	// Delete a file
 	function deleteFile()
 	{

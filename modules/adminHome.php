@@ -69,7 +69,7 @@ else if ($_SESSION['userStatus']!='100') {
             			// print_r($allMovies);
             			if ($allMovies) {
             				$tr = '';
-            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Movie Name</th><th>Genre</th><th>Director</th><th>Description</th><th>IMDB</th><th>Price</th></tr></thead><tbody>';
+            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Movie Name</th><th>Genre</th><th>Director</th><th>Description</th><th>IMDB</th><th>Price</th><th>Delete</th></tr></thead><tbody>';
             				foreach ($allMovies as $skey => $singleMovie) {
             					$td = '<td>'.++$skey.'</td>';
             					for ($i=0; $i < count($singleMovie); $i++) { 
@@ -79,6 +79,7 @@ else if ($_SESSION['userStatus']!='100') {
             							$td = $td.'<td>'.$singleMovie[$i].'</td>';
             						}
             					}
+                                $td = $td.'<td><form method="post" action="adminProcess.php"><input type="hidden" name="delId" value="'.$singleMovie[0].'"><input type="submit" name="delMovie" value="Remove" class="btn btn-danger"></form></td>';
             					$tr = $tr.'<tr>'.$td.'</tr>';
             				}
             				echo $tr.'</tbody></table>';
@@ -107,7 +108,7 @@ else if ($_SESSION['userStatus']!='100') {
             			// print_r($allMovies);
             			if ($allTheatres) {
             				$tr = '';
-            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Theatre Name</th><th>Seats</th></tr></thead><tbody>';
+            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Theatre Name</th><th>Seats</th><th>Delete</th></tr></thead><tbody>';
             				foreach ($allTheatres as $trkey => $singleTheatre) {
             					$td = '<td>'.++$trkey.'</td>';
             					for ($i=0; $i < count($singleTheatre); $i++) { 
@@ -117,6 +118,7 @@ else if ($_SESSION['userStatus']!='100') {
             							$td = $td.'<td>'.$singleTheatre[$i].'</td>';
             						}
             					}
+                                $td = $td.'<td><form method="post" action="adminProcess.php"><input type="hidden" name="delId" value="'.$singleTheatre[0].'"><input type="submit" name="delTheatre" value="Remove" class="btn btn-danger"></form></td>';
             					$tr = $tr.'<tr>'.$td.'</tr>';
             				}
             				echo $tr.'</tbody></table>';
@@ -132,7 +134,7 @@ else if ($_SESSION['userStatus']!='100') {
 			  			$timeData = $timeFH->getAllData();
 			  			if ($timeData) {
             				$tr = '';
-            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Show Timings</th></tr></thead><tbody>';
+            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Show Timings</th><th>Delete</th></tr></thead><tbody>';
             				foreach ($timeData as $tkey => $aTime) {
             					$td = '<td>'.++$tkey.'</td>';
             					for ($i=0; $i < count($aTime); $i++) { 
@@ -142,6 +144,7 @@ else if ($_SESSION['userStatus']!='100') {
             							$td = $td.'<td>'.$aTime[$i].'</td>';
             						}
             					}
+                                $td = $td.'<td><form method="post" action="adminProcess.php"><input type="hidden" name="delId" value="'.$aTime[0].'"><input type="submit" name="delTime" value="Remove" class="btn btn-danger"></form></td>';
             					$tr = $tr.'<tr>'.$td.'</tr>';
             				}
             				echo $tr.'</tbody></table>';
@@ -159,7 +162,7 @@ else if ($_SESSION['userStatus']!='100') {
             			// print_r($allMovies);
             			if ($allMovies) {
             				$tr = '';
-            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Movie Name</th><th>Genre</th><th>Director</th><th>Description</th></tr></thead><tbody>';
+            				echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>Movie Name</th><th>Genre</th><th>Director</th><th>Description</th><th>Delete</th></tr></thead><tbody>';
             				foreach ($allUpMovies as $skey => $singleUpMovie) {
             					$td = '<td>'.++$skey.'</td>';
             					for ($i=0; $i < count($singleUpMovie); $i++) { 
@@ -169,6 +172,7 @@ else if ($_SESSION['userStatus']!='100') {
             							$td = $td.'<td>'.$singleUpMovie[$i].'</td>';
             						}
             					}
+                                $td = $td.'<td><form method="post" action="adminProcess.php"><input type="hidden" name="delId" value="'.$singleUpMovie[0].'"><input type="submit" name="delUpcoming" value="Remove" class="btn btn-danger"></form></td>';
             					$tr = $tr.'<tr>'.$td.'</tr>';
             				}
             				echo $tr.'</tbody></table>';
