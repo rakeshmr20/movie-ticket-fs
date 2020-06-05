@@ -10,6 +10,7 @@ else if ($_SESSION['userStatus']!='200') {
     exit;
 } 
 $ticketFH = new FileProcess('database/tickets.txt');
+$movieFH = new FileProcess('database/movies.txt');
 ?>
 <header class="bg-primary text-center py-5 mb-4">
   <div class="container">
@@ -46,6 +47,9 @@ $ticketFH = new FileProcess('database/tickets.txt');
 					for ($i=0; $i < count($ticket); $i++) { 
 						if ($i == 0 || $i == 1) {
 							continue;
+						} if ($i == 2) {
+							$mdata = $movieFH->getSingleData($ticket[2]);
+							$td = $td.'<td>'.$mdata[1].'</td>';
 						} else {
 							$td = $td.'<td>'.$ticket[$i].'</td>';
 						}
