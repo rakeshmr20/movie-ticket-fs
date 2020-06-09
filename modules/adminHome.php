@@ -101,6 +101,30 @@ else if ($_SESSION['userStatus']!='100') {
             	</div>
             </div>
             <div class="row module">
+                <h4>Tickets -- User</h4>
+                <?php
+                    // to show tickets for every user
+                    $thandler = fopen('database/users.txt', 'a+');
+                    $tallUsers = fread($thandler, filesize('database/users.txt'));
+                    // print_r($tallUsers);
+                    $allUsersArray = explode("|", $tallUsers, -1);
+                    $tr = '';
+                    $cct = 0;
+                    echo '<table class="table table-bordered"><thead><tr><th>Sl. No</th><th>User Name</th><th>Ticket Count</th></tr></thead><tbody>';
+                    foreach ($allUsersArray as $key => $value) {
+                        $tr = '';
+                        $tuserData = explode("~", $value, -1);
+                        if ($tuserData[3] !='100') {
+                            $tucount = $ticketFH->countUserTickets($tuserData[0]);
+                            $td = '<td>'.++$cct.'</td><td>'.$tuserData[1].'</td><td>'.$tucount.'</td>';
+                            $tr = $tr.'<tr>'.$td.'</tr>';
+                            echo($tr);
+                        }
+                    }
+                    echo '</tbody></table>';
+                ?>
+            </div>
+            <div class="row module">
             	<div class="col-md-6">
             		<h4 class="text-center">Theatres List with Available Seats</h4>
             		<?php
